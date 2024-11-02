@@ -14,6 +14,7 @@ class NewMockTest extends TestCase
 
         $result = $mock->sendMessage('test3@yesweb.se', 'Testing the mailer.');
 
-        var_dump($result);
+        $this->assertTrue($result);
+        // var_dump($result);
     }
 }
