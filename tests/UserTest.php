@@ -1,6 +1,5 @@
 <?php
 
-use PharIo\Manifest\Email;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -34,6 +33,16 @@ class UserTest extends TestCase
     public function testNotificationISSent()
     {
         $user = new User;
+
+        $mock_mailer = $this->createMock(Mailer::class);
+
+        $mock_mailer->expects($this->once())
+            ->method('sendMessage')
+            ->with($this->equalTo('test3@yesweb.se'), $this->equalTo('Hello from UserTest'))
+            ->willReturn(true);
+
+        // $user->setMailer(new Mailer);
+        $user->setMailer($mock_mailer);
 
         $user->email = 'test3@yesweb.se';
 

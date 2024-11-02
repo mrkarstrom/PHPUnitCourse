@@ -13,6 +13,23 @@ class User
      */
     public $email;
 
+    /**
+     * Mailer object
+     * @var Mailer
+     */
+    protected $mailer;
+
+    /**
+     * Set the mailer dependency
+     * 
+     * @param Mailer $mailer The mailer object
+     * 
+     */
+    public function setMailer(Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
     public function getFullName()
     {
         return trim("$this->first_name $this->last_name");
@@ -28,8 +45,9 @@ class User
      */
     public function notify($message)
     {
-        $mailer = new Mailer;
+        // $mailer = new Mailer;
 
-        return $mailer->sendMessage($this->email, $message);
+        // return $mailer->sendMessage($this->email, $message);
+        return $this->mailer->sendMessage($this->email, $message);
     }
 }
