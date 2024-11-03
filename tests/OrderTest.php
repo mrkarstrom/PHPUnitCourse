@@ -9,25 +9,6 @@ class OrderTest extends TestCase
         Mockery::close();
     }
 
-    // public function testOrderIsProcessed()
-    // {
-    //     // Mocking the PaymentGateway class with onlyMethods
-    //     $gateway = $this->getMockBuilder(PaymentGateway::class)
-    //         ->onlyMethods(['charge']) // Using onlyMethods for PHPUnit 8 and newer
-    //         ->getMock();
-
-    //     // Set up the charge method to return true
-    //     $gateway->method('charge')
-    //         ->willReturn(true);
-
-    //     // Create an Order instance with the mocked PaymentGateway
-    //     $order = new Order($gateway);
-    //     $order->amount = 200;
-
-    //     // Assert that the order is processed successfully
-    //     $this->assertTrue($order->process());
-    // }
-
     public function testIsUsedProcessedUsingMockery()
     {
         $gateway = Mockery::mock('PaymentGateway');
@@ -41,7 +22,6 @@ class OrderTest extends TestCase
 
         $order->amount = 200;
 
-        // Assert that the order is processed successfully
         $this->assertTrue($order->process());
     }
 }
